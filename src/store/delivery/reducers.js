@@ -5,7 +5,6 @@ const initialState = {
 }
 
 export const deliveryReducer = (state = initialState, action) => {
-   console.log(action)
    switch (action.type) {
       case CHOISE_DELIVERY:
          return ({
