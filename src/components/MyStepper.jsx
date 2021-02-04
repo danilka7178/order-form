@@ -36,7 +36,7 @@ function MyStepper() {
       <div className={classes.root}>
          <Stepper activeStep={step} alternativeLabel>
             {steps.map(({ id, name }) => (
-               <Step key={`${id}_${name.substr(0, 5)}`}>
+               <Step key={`${id}_${name.substring(0, 5)}`}>
                   <StepLabel>{name}</StepLabel>
                </Step>
             ))}

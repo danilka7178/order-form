@@ -1,7 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setFirstName, setLastName, setCity, setCountry, setPhone } from "../store/contacts/actions";
 
 const useStyles = makeStyles((theme) => ({
    root: {
@@ -32,19 +33,39 @@ const useStyles = makeStyles((theme) => ({
 
 function Contacts() {
    const classes = useStyles();
-   const labels = useSelector(state => state.contactsVault.inputs);
+   const inputs = useSelector(state => state.contactsVault.inputs);
+   const dispatch = useDispatch();
+
+   const changeInputValue = (e) => {
+      switch (+e.target.id.substring(15, 16)) {
+         case 0:
+            return dispatch(setFirstName(e.target.value));
+         case 1:
+            return dispatch(setLastName(e.target.value));
+         case 2:
+            return dispatch(setCountry(e.target.value));
+         case 3:
+            return dispatch(setCity(e.target.value));
+         case 4:
+            return dispatch(setPhone(e.target.value));
+
+         default:
+            break;
+      }
+   }
 
    return (
       <div className={classes.root}>
          <form className={classes.containerInputs} noValidate autoComplete="off">
-            {labels.map(({ id, label }) => {
+            {inputs.map(({ id, label = "" }) => {
                return (
                   <TextField
                      key={`${id}_${label.substr(0, 5)}`}
                      className={classes.input}
-                     id="outlined-basic"
+                     id={`outlined-basic ${id}`}
                      label={label}
                      variant="outlined"
+                     onChange={changeInputValue}
                   />
                )
             })}
