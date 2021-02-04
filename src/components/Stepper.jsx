@@ -6,6 +6,9 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
+import { useSelector, useDispatch } from "react-redux";
+import { handleNext, handleBack } from "../store/stepper/actions"
+
 const useStyles = makeStyles((theme) => ({
    root: {
       width: '100%',
@@ -43,24 +46,28 @@ function getStepContent(step) {
 
 export default function HorizontalLinearStepper() {
    const classes = useStyles();
-   const [activeStep, setActiveStep] = React.useState(0);
    const steps = getSteps();
 
-   const handleNext = () => {
-      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+   const dispatch = useDispatch();
+   const { stepper } = useSelector(state => state);
+
+   const clickHandleNext = () => {
+      dispatch(handleNext())
    };
 
-   const handleBack = () => {
-      setActiveStep((prevActiveStep) => prevActiveStep - 1);
+   const clickHandleBack = () => {
+      dispatch(handleBack())
    };
 
    const handleReset = () => {
-      setActiveStep(0);
+      dispatch(handleReset())
    };
+
+   console.log(stepper)
 
    return (
       <div className={classes.root}>
-         <Stepper activeStep={activeStep}>
+         <Stepper activeStep={stepper.step}>
             {steps.map((label, index) => {
                const stepProps = {};
                const labelProps = {};
@@ -72,7 +79,7 @@ export default function HorizontalLinearStepper() {
             })}
          </Stepper>
          <div>
-            {activeStep === steps.length ? (
+            {stepper.step === steps.length ? (
                <div>
                   {alert("Спасибо, денюжки капнули")}
                   <Button onClick={handleReset} className={classes.button}>
@@ -81,18 +88,18 @@ export default function HorizontalLinearStepper() {
                </div>
             ) : (
                   <div>
-                     <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+                     <Typography className={classes.instructions}>{getStepContent(stepper.step)}</Typography>
                      <div>
-                        <Button variant="outlined" disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
+                        <Button variant="outlined" disabled={stepper.step === 0} onClick={clickHandleBack} className={classes.button}>
                            Назад
                         </Button>
                         <Button
                            variant="contained"
-                           color={activeStep === steps.length - 1 ? 'secondary' : 'primary'}
-                           onClick={handleNext}
+                           color={stepper.step === steps.length - 1 ? 'secondary' : 'primary'}
+                           onClick={clickHandleNext}
                            className={classes.button}
                         >
-                           {activeStep === steps.length - 1 ? 'Оплатить' : 'Далее'}
+                           {stepper.step === steps.length - 1 ? 'Оплатить' : 'Далее'}
                         </Button>
                      </div>
                   </div>
