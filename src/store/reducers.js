@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import { stepperReducer } from "./stepper/reducers"
+import { stepReducer } from "./steps/reducers"
 
 export default combineReducers({
-   stepper: stepperReducer,
+   stepVault: stepReducer,
 });
