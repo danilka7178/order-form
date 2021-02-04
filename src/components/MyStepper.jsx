@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 const useStyles = makeStyles((theme) => ({
    root: {
       width: '100%',
+      marginBottom: "50px"
    },
    instructions: {
       marginTop: theme.spacing(1),
@@ -23,9 +24,12 @@ function MyStepper() {
    const classes = useStyles();
 
    const getStepContent = (step) => {
-      return (
-         steps.filter((obj) => obj.id === step)[0].content
-      )
+      const findObj = steps.filter((obj) => obj.id === step);
+      if (findObj.length) {
+         return (
+            findObj[0].content
+         )
+      } else return null;
    }
 
    return (
