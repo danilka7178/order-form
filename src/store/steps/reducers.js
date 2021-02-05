@@ -41,7 +41,7 @@ export const stepReducer = (state = initialState, action) => {
       case STEP_RESET:
          return {
             ...state,
-            step: 0
+            step: 0,
          };
 
       default:
