@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 function SummaryInfo() {
    const { firstName, lastName, country, city, phone } = useSelector(state => state.contactsVault.formData);
    const delivery = useSelector(state => state.deliveryVault.deliveryMethod);
+   const timeToPostDelivery = useSelector(state => state.deliveryVault.timeToPostDelivery);
    const payment = useSelector(state => state.paymentVault.paymentMethod);
 
    return (
@@ -20,7 +21,7 @@ function SummaryInfo() {
          <div className="delivery">
             <h4 className="delivery__title">Способ доставки: </h4>
             <ul className="delivery__list">
-               <li className="delivery__item">{delivery}</li>
+               <li className="delivery__item">{delivery} / {timeToPostDelivery}</li>
             </ul>
          </div>
          <div className="payment">

@@ -3,6 +3,7 @@ export const SET_LASTNAME = "SET_LASTNAME";
 export const SET_CITY = "SET_CITY";
 export const SET_COUNTRY = "SET_COUNTRY";
 export const SET_PHONE = "SET_PHONE";
+export const RESET_FROM = "RESET_FROM";
 
 export const setFirstName = (data) => ({
    type: SET_FIRSTNAME,
@@ -24,3 +25,6 @@ export const setPhone = (data) => ({
    type: SET_PHONE,
    payload: data
 });
+export const resetForm = () => ({
+   type: RESET_FROM,
+})

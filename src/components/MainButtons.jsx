@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { useSelector, useDispatch } from "react-redux";
 import { handleNext, handleBack, handleReset } from "../store/steps/actions";
+import { resetForm } from "../store/contacts/actions";
 
 const useStyles = makeStyles((theme) => ({
    backButton: {
@@ -41,6 +42,7 @@ function MainButtons() {
 
    const clickResetStep = () => {
       dispatch(handleReset())
+      dispatch(resetForm())
    }
 
    return (

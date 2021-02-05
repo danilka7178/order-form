@@ -1,4 +1,4 @@
-import { STEP_INCREMENT, STEP_DECCREMENT, STEP_RESET } from "./actions"
+import { STEP_INCREMENT, STEP_DECCREMENT, STEP_RESET, } from "./actions"
 
 const initialState = {
    step: 0,
@@ -27,7 +27,6 @@ const initialState = {
 };
 
 export const stepReducer = (state = initialState, action) => {
-   console.log(state)
    switch (action.type) {
       case STEP_INCREMENT:
          return {
@@ -43,7 +42,6 @@ export const stepReducer = (state = initialState, action) => {
          return {
             ...state,
             step: 0,
-            formData: {},
          };
 
       default:

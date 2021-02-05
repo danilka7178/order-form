@@ -1,4 +1,4 @@
-import { SET_FIRSTNAME, SET_LASTNAME, SET_COUNTRY, SET_CITY, SET_PHONE } from "./actions";
+import { SET_FIRSTNAME, SET_LASTNAME, SET_COUNTRY, SET_CITY, SET_PHONE, RESET_FROM } from "./actions";
 
 const initialState = {
    inputs: [
@@ -56,6 +56,11 @@ export const contactsReducer = (state = initialState, action) => {
          return ({
             ...state,
             formData: { ...state.formData, phone: action.payload }
+         })
+      case RESET_FROM:
+         return ({
+            ...state,
+            formData: {},
          })
 
       default:
