@@ -1,5 +1,5 @@
 import { MyStepper, MainButtons } from "./components";
-import { Contacts, DeliveryChoose } from "./pages";
+import { Contacts, DeliveryChoose, PaymentChoose, SummaryInfo } from "./pages";
 import { useSelector } from "react-redux";
 
 function App() {
@@ -10,7 +10,9 @@ function App() {
       <MyStepper />
       {step === 0 ? <Contacts /> :
         step === 1 ? <DeliveryChoose /> :
-          null}
+          step === 2 ? <PaymentChoose /> :
+            step === 3 ? <SummaryInfo /> :
+              null}
       <MainButtons />
     </div>
   );
