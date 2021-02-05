@@ -27,6 +27,7 @@ const initialState = {
 };
 
 export const stepReducer = (state = initialState, action) => {
+   console.log(state)
    switch (action.type) {
       case STEP_INCREMENT:
          return {
@@ -42,6 +43,7 @@ export const stepReducer = (state = initialState, action) => {
          return {
             ...state,
             step: 0,
+            formData: {},
          };
 
       default:

@@ -18,24 +18,17 @@ function MainButtons() {
    const dispatch = useDispatch();
    const classes = useStyles();
 
-   // Знаю, что херня, но чет хз что и придумать. Пока так, валидацию бы
    const request = useSelector(state => state.contactsVault);
-   const goNextGo = () => {
-      if (request) {
-         if (request.formData) {
-            if (request.formData.firstName) {
-               if (request.formData.lastName) {
-                  if (request.formData.country) {
-                     if (request.formData.city) {
-                        if (request.formData.phone) {
-                           return true
-                        } return false;
-                     } return false;
-                  } return false;
-               } return false;
-            } return false;
-         } return false;
-      } return false;
+   const goNextPage = () => {
+      if (request
+         && request.formData
+         && request.formData.firstName
+         && request.formData.lastName
+         && request.formData.country
+         && request.formData.city
+         && request.formData.phone) {
+         return true
+      }
    }
 
    const clickNextStep = () => {
@@ -72,7 +65,7 @@ function MainButtons() {
                      Назад
                         </Button>
                   <Button
-                     disabled={!goNextGo()}
+                     disabled={!goNextPage()}
                      variant="contained"
                      color={step !== steps.length - 1 ? "primary" : "secondary"}
                      onClick={clickNextStep}
