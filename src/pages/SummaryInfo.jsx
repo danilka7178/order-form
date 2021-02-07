@@ -3,8 +3,21 @@ import { useSelector } from "react-redux";
 function SummaryInfo() {
    const { firstName, lastName, country, city, phone } = useSelector(state => state.contactsVault.formData);
    const delivery = useSelector(state => state.deliveryVault.deliveryMethod);
-   const timeToPostDelivery = useSelector(state => state.deliveryVault.timeToPostDelivery);
    const payment = useSelector(state => state.paymentVault.paymentMethod);
+
+   const getPaymentTime = (delivery) => {
+      if (delivery) {
+         if (delivery === "DHL") {
+            return "сегодня"
+         } else if (delivery === "СДЭК") {
+            return "3 дня"
+         } else if (delivery === "DPD") {
+            return "1-2 дня"
+         } else if (delivery === "Boxberry") {
+            return "никогда"
+         } return
+      } else return "Время доставки не определено"
+   }
 
    return (
       <div className="info">
@@ -21,7 +34,7 @@ function SummaryInfo() {
          <div className="delivery">
             <h4 className="delivery__title">Способ доставки: </h4>
             <ul className="delivery__list">
-               <li className="delivery__item">{delivery} / {timeToPostDelivery}</li>
+               <li className="delivery__item">{delivery} / {getPaymentTime(delivery)}</li>
             </ul>
          </div>
          <div className="payment">
