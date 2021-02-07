@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { useSelector, useDispatch } from "react-redux";
 import { handleNext, handleBack, handleReset } from "../store/steps/actions";
+import { axiosPostArticles } from "../store/actions";
 import { resetForm } from "../store/contacts/actions";
 
 const useStyles = makeStyles((theme) => ({
@@ -16,10 +17,11 @@ const useStyles = makeStyles((theme) => ({
 
 function MainButtons() {
    const { step, steps } = useSelector(state => state.stepVault);
+   const request = useSelector(state => state.contactsVault);
+
    const dispatch = useDispatch();
    const classes = useStyles();
 
-   const request = useSelector(state => state.contactsVault);
    const goNextPage = () => {
       if (request
          && request.formData
@@ -34,6 +36,9 @@ function MainButtons() {
 
    const clickNextStep = () => {
       dispatch(handleNext())
+      if (step === 3) {
+         dispatch(axiosPostArticles())
+      }
    }
 
    const clickPrevStep = () => {

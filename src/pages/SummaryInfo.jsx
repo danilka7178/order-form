@@ -5,16 +5,16 @@ function SummaryInfo() {
    const delivery = useSelector(state => state.deliveryVault.deliveryMethod);
    const payment = useSelector(state => state.paymentVault.paymentMethod);
 
-   const getPaymentTime = (delivery) => {
+   const getDeliveryTime = (delivery) => {
       if (delivery) {
          if (delivery === "DHL") {
-            return "сегодня"
+            return "Сегодня"
          } else if (delivery === "СДЭК") {
             return "3 дня"
          } else if (delivery === "DPD") {
             return "1-2 дня"
          } else if (delivery === "Boxberry") {
-            return "никогда"
+            return "Никогда"
          } return
       } else return "Время доставки не определено"
    }
@@ -34,7 +34,7 @@ function SummaryInfo() {
          <div className="delivery">
             <h4 className="delivery__title">Способ доставки: </h4>
             <ul className="delivery__list">
-               <li className="delivery__item">{delivery} / {getPaymentTime(delivery)}</li>
+               <li className="delivery__item">{delivery} / {getDeliveryTime(delivery)}</li>
             </ul>
          </div>
          <div className="payment">

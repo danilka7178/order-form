@@ -9,7 +9,7 @@ export const paymentReducer = (state = initialState, action) => {
       case CHOISE_PAYMENT:
          return ({
             ...state,
-            paymentMethod: action.payload
+            paymentMethod: action.payload,
          })
 
       default:
